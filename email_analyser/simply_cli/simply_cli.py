@@ -1,17 +1,22 @@
 from sys import argv
-from abc import ABC
 
-from .messages import Messages
-from .errors import TooManyArgumentsError, NotEnoughArgumentsError
-from .commands import Commands
-from .register import CommandRegister
-from .decorators import register_command
+from .components import (
+    Messages,
+    TooManyArgumentsError,
+    NotEnoughArgumentsError,
+    Commands,
+    CommandRegistry,
+    CommandRegister,
+)
 
 
-class AbstractCmdApp(ABC):
+register_command = CommandRegister().register_command
+
+
+class SimplyCLI:
     def __init__(self):
         self.commands = Commands()
-        self.tasks = CommandRegister.registered_tasks
+        self.tasks = CommandRegistry.registered_tasks
 
     def run(self):
         task_id = self.commands.get_command_id(argv[1]) if len(argv) > 1 else 0

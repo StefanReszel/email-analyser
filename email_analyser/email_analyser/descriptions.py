@@ -1,5 +1,4 @@
 class Descriptions:
-    HELP = "Show help."
     INCORRECT_EMAILS = "Count and list invalid emails."
     SEARCH = "Find, count and list emails according to given phrase."
     GROUP_BY_DOMAIN = (

@@ -5,7 +5,7 @@ class Messages:
     help_exclude = -1 if "-h" in orig_argv or "--help" in orig_argv else None
     _APP_NAME = " ".join(orig_argv[:help_exclude])
 
-    MULTIPLE_ARGS = '[...]'
+    MULTIPLE_ARGS = "[...]"
     HELP = "\nUsage:\n" f"    {_APP_NAME} <command> {MULTIPLE_ARGS}\n\n" "Commands:"
     COMMAND_ROW = "    {commands} {arguments}{space}{description}"
 

@@ -1,23 +1,25 @@
 import re
 from typing import Generator
 
-from .super_simply_cli import AbstractCmdApp, register_command
+from .simply_cli import SimplyCLI, register_command
 
-from .email_analyser.messages import Messages
-from .email_analyser.descriptions import Descriptions
-from .email_analyser.parsers import FileParserForEmails
-from .email_analyser.validators import EmailValidator
+from .email_analyser import (
+    Messages,
+    Descriptions,
+    FileParser,
+    EmailValidator,
+)
 
 
-class EmailAnalyzer(AbstractCmdApp):
+class EmailAnalyzer(SimplyCLI):
     def __init__(self):
-        self.parser = FileParserForEmails()
+        self.parser = FileParser()
         self.email_validator = EmailValidator()
 
         super().__init__()
 
     @register_command(("-ic", "--incorrect-emails"), Descriptions.INCORRECT_EMAILS)
-    def _incorrect_emails(self):
+    def incorrect_emails(self):
         incorrect_emails = self._get_incorrect_emails()
 
         if isinstance(incorrect_emails, list):
@@ -30,7 +32,7 @@ class EmailAnalyzer(AbstractCmdApp):
             print(incorrect_emails)
 
     @register_command(("-s", "--search"), Descriptions.SEARCH, ["phrase"])
-    def _search(self, phrase: str):
+    def search(self, phrase: str):
         found_emails = self._search_emails(phrase)
 
         if isinstance(found_emails, set):
@@ -45,7 +47,7 @@ class EmailAnalyzer(AbstractCmdApp):
             print(found_emails)
 
     @register_command(("-gbd", "--group-by-domain"), Descriptions.GROUP_BY_DOMAIN)
-    def _group_by_domain(self):
+    def group_by_domain(self):
         grouped_emails = self._get_grouped_emails()
 
         if isinstance(grouped_emails, dict):
@@ -67,7 +69,7 @@ class EmailAnalyzer(AbstractCmdApp):
         Descriptions.FIND_EMAILS_NOT_IN_LOGS,
         ["path_to_log"],
     )
-    def _find_emails_not_in_logs(self, path_to_log: str):
+    def find_emails_not_in_logs(self, path_to_log: str):
         not_sent_emails = self._get_not_sent_emails(path_to_log)
 
         if isinstance(not_sent_emails, set):

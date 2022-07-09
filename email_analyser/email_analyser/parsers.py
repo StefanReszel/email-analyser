@@ -8,7 +8,7 @@ from .types import ScandirIterator
 DIRECTION = "emails"
 
 
-class FileParserForEmails:
+class FileParser:
     def __init__(self, direction=DIRECTION):
         self.direction = direction
 
