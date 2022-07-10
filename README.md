@@ -6,7 +6,8 @@
 stefanreszel@outlook.com
 
 ## Requirements
-I decided to make app from scratch, so all you need to use it is **Python 3.10**.
+I decided to make app from scratch, so all you need to use it is **Python 3.10**.<br>
+Possibly, if you would like to run tests, you have to install packages from `requirements.txt`.
 
 ## Description
 There are, in the repository, `emails` direction and `email-sent.logs` file which were sent by you. The application is looking for email adresses in
@@ -17,7 +18,7 @@ Firstly a few words about `simply_cli` package. To create this the certain thoug
 do a similar app?". So, inspired by 'Click', I made (very) simply terminal app creator :). The main features of this package are `SimplyCLI` class and
 `register_command` decorator. There is in this package the logic of running commands in terminal.
 
-On the other hand we have `email_analyser` package where from `app.py` script imports modules to make tasks done. `app.py` imports `SimplyCLI` and
+Another folder is `email_analyser` package where from `app.py` script imports modules to make tasks done. `app.py` imports `SimplyCLI` and
 `register_command` also. `app.py` is the most outer layer of this project, from here `main.py` imports `EmailAnalyzer` class and invoke tasks.
 
 ## Usage
