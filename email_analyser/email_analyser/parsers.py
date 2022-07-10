@@ -16,7 +16,7 @@ class FileParser:
         files = os.scandir(self.direction)
         return self._parse_files(files)
 
-    def _parse_files(self, files: ScandirIterator) -> str:
+    def _parse_files(self, files: ScandirIterator) -> Generator:
         for file in files:
             if file.name.endswith(".txt"):
                 generator = self._read_txt_file(file.path)
