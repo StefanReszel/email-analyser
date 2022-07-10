@@ -11,7 +11,7 @@ from .email_analyser import (
 )
 
 
-class EmailAnalyzer(SimplyCLI):
+class EmailAnalyser(SimplyCLI):
     def __init__(self):
         self.parser = FileParser()
         self.email_validator = EmailValidator()
@@ -140,7 +140,7 @@ class EmailAnalyzer(SimplyCLI):
             try:
                 log = open(path, "r")
             except FileNotFoundError:
-                return Messages.FILE_ERROR.format(file=path)
+                return Messages.FILE_DOES_NOT_EXISTS_ERROR.format(file=path)
 
             sent_emails = log.read()
 
@@ -148,9 +148,9 @@ class EmailAnalyzer(SimplyCLI):
                 is_valid = self.email_validator.validate(email)
 
                 if is_valid:
-                    is_sent = re.search(email, sent_emails)
+                    sent = re.search(email, sent_emails)
 
-                    if not is_sent:
+                    if not sent:
                         not_sent_emails.add(email)
 
             log.close()
