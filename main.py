@@ -1,8 +1,8 @@
-from email_analyser.app import EmailAnalyzer
+from email_analyser.app import EmailAnalyser
 
 
 def main():
-    app = EmailAnalyzer()
+    app = EmailAnalyser()
     app.run()
 
 
