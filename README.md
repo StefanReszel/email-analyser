@@ -6,7 +6,7 @@
 stefanreszel@outlook.com
 
 ## Requirements
-I decided to make app from scratch, so all you need to use it is **Python 3.10**.
+I decided to make app from scratch, so all you need to use it is **Python 3.10**.<br>
 Possibly, if you would like to run tests, you have to install packages from `requirements.txt`.
 
 ## Description
