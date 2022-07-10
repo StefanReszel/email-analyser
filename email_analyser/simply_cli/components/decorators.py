@@ -21,19 +21,21 @@ class CommandRegister:
 
             def wraper(*args):
                 if count_arguments:
-                    self._count_arguments(arguments, args)
+                    self._count_arguments(required_args=arguments, provided_args=args)
 
                 func(*args)
 
             return wraper
+
         return decorator
 
     def _count_arguments(self, required_args: list, provided_args: list):
         required_args = len(required_args)
+
         provided_args = (
-            len(provided_args) - 1
-            if isinstance(provided_args[0], object)
-            else len(provided_args)
+            len(provided_args)
+            if isinstance(provided_args[0], str)
+            else len(provided_args) - 1
         )
 
         if provided_args > required_args:
@@ -46,7 +48,7 @@ class CommandRegister:
                 required_args, Messages.NOT_ENOUGH_ARGUMENTS_ERROR
             )
 
-    def _prepare_commands(self, commands) -> tuple:
+    def _prepare_commands(self, commands: list[str] | tuple[str]) -> tuple:
         self._validate_commands(commands)
 
         if len(commands) == 1:
@@ -58,14 +60,16 @@ class CommandRegister:
             else (commands[1], commands[0])
         )
 
-    def _validate_commands(self, commands):
+    def _validate_commands(self, commands: list[str] | tuple[str]):
         if not isinstance(commands, tuple) and not isinstance(commands, list):
             raise TypeError(Messages.TYPE_ERROR.format(name_of_arg="commands"))
 
         if not 0 < len(commands) < 3:
             raise TypeError(Messages.BAD_QUANTITY_OF_COMMANDS_ERROR)
 
-    def _prepare_arguments(self, arguments, count_arguments: bool) -> list:
+    def _prepare_arguments(
+        self, arguments: list[str] | tuple[str], count_arguments: bool
+    ) -> list:
         if not count_arguments:
             return [Messages.MULTIPLE_ARGS]
 
@@ -73,6 +77,6 @@ class CommandRegister:
 
         return [f"<{argument}>" for argument in arguments]
 
-    def _validate_arguments(self, arguments):
+    def _validate_arguments(self, arguments: list[str] | tuple[str]):
         if not isinstance(arguments, tuple) and not isinstance(arguments, list):
             raise TypeError(Messages.TYPE_ERROR.format(name_of_arg="arguments"))
