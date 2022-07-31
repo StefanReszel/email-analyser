@@ -6,7 +6,7 @@ All you need to check this out is **Python 3.10**.<br>
 Possibly, if you would like to run tests, you have to install packages from `requirements.txt`.
 
 ## Description
-The application makes operations on files and fetch required data from them. The application is looking for email adresses in
+The application makes operations on files and fetches required data from them. The application is looking for email adresses in
 `emails` by default. This is necessary that it be in the same folder as `main.py` script. We will use `main.py` script to run commands.
 There is an `email_analyser` package as well, which inside are `app.py` script and another two packages: `simply_cli` and `email_analyser` - again.
 
